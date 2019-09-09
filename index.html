@@ -11,10 +11,12 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.typekit.net/xbg7zzr.css">
+    <link href="https://fonts.googleapis.com/css?family=Domine&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
+    <div id="particles-js"></div>
     <button class="start-button btn btn-primary">New Game!</button>
     <div class="container p-5">
         <div class="row">
@@ -39,13 +41,16 @@
                 </div>
             </div>
             <div class="col">
-                <h3 class="timer"></h3>
+                <h3 class="timer">30 seconds left</h3>
             </div>
         </div>
         <div class="row game-over d-none">
-            <h3 id="correct-answers"></h3>
-            <h3 id="wrong-answers"></h3>
-            <h3 id="time-out"></h3>
+            <div class="col mx-auto">
+                <h3 id="correct-answers"></h3>
+                <h3 id="wrong-answers"></h3>
+                <h3 id="time-out"></h3>
+                <button class="start-button btn btn-primary">Play Again!</button>
+            </div>
         </div>
     </div>
     <!-- Optional JavaScript -->
@@ -60,6 +65,7 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
+    <script src="http://www.jsdelivr.com/#!particles.js"></script>
     <script src="assets/javascript/app.js"></script>
 </body>
 

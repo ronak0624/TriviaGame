@@ -1,8 +1,8 @@
-var correctAnswers, 
-    incorrectAnswers, 
-    unanswered, 
+var correctAnswers,
+    incorrectAnswers,
+    unanswered,
     timerCounter,
-    selectedAnswer, 
+    selectedAnswer,
     notClicked,
     timerInterval;
 
@@ -10,7 +10,7 @@ var questionCount = 0;
 
 var qaList = [
     [
-        "What is my favorite color?",
+        "Which is the most common flag color?",
         "Red",
         "Blue",
         "Green",
@@ -26,53 +26,60 @@ var qaList = [
         3
     ],
     [
-        "What is a baby kangaroo called?", 
-        "a kid", 
-        "a joey", 
-        "a calf", 
-        "a steve", 
+        "What is a baby kangaroo called?",
+        "a kid",
+        "a joey",
+        "a calf",
+        "a steve",
         2
     ],
     [
-        "How many strings are on a standard guitar?", 
-        "3", 
-        "4", 
-        "5", 
-        "6", 
+        "How many strings are on a standard guitar?",
+        "3",
+        "4",
+        "5",
+        "6",
+        4
+    ],
+    [
+        "What body of water separates France and England?",
+        "Red Sea",
+        "Black Sea",
+        "Meditteranean Sea",
+        "English Channel",
+        4
+    ],
+    [
+        "What pigment gives leaves their green color and absorbs light that is used in photosynthesis",
+        "Chloroplast",
+        "Clorox",
+        "Chlorophyll",
+        "Sodium",
+        3
+    ],
+    [
+        "When did the Titanic sink?",
+        "1911",
+        "1915",
+        "1912",
+        "1916",
         4
     ]
-    // ],
-    // [
-
-    // ],
-    // [
-
-    // ],
-    // [
-
-    // ],
-    // [
-
-    // ],
-    // [
-
-    // ]
 ];
 
-$(".start-button").click(function(){
+$(".start-button").click(function () {
     newGame();
 });
 
 $(".card-link").click(function () {
-    if(questionCount >= qaList.length - 1){
+    if (questionCount > qaList.length - 2) {
         gameOver();
-    }
-    else{
+    } else {
         nextQuestion();
     }
 });
 
-$(".question .list-group-item").click(function(){
+$(".question .list-group-item").click(function () {
     selectedAnswer = $(this).index() + 1;
     $(".list-group-item").removeClass("active-answer");
     $(this).addClass("active-answer");
@@ -91,7 +98,7 @@ function newGame() {
 function timer() {
     timerCounter--;
     $(".timer").text(timerCounter + " seconds left");
-    if(timerCounter <= 0){
+    if (timerCounter <= 0) {
         nextQuestion();
     }
 }
@@ -116,11 +123,11 @@ function nextQuestion() {
     var currentQuestion = qaList[questionCount];
     // This boolean ensures the player can't keep clicking to get more points, 
     // it also checks to see if the current answer is correct.
-    if(selectedAnswer === currentQuestion[5]){
+    if (selectedAnswer === currentQuestion[5]) {
         correctAnswers++;
         notClicked = false;
     }
-    if(selectedAnswer !== currentQuestion[5]){
+    if (selectedAnswer !== currentQuestion[5]) {
         incorrectAnswers++;
         notClicked = false;
     }
@@ -128,8 +135,8 @@ function nextQuestion() {
     newQuestion();
 }
 
-function gameOver(){
-    $("#correct-answers").text("You got " + correctAnswers + " correct");
+function gameOver() {
+    $("#correct-answers").text("You got " + correctAnswers + " correct, and " + incorrectAnswers + " wrong.");
     $(".row:nth-of-type(2)").addClass("d-none");
     $(".game-over").removeClass("d-none");
 }

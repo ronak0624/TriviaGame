@@ -2,6 +2,10 @@ body{
     font-family: 'Europa', sans-serif;
 }
 
+h1{
+    transition: 0.5s;
+}
+
 .card.question{
    
 }
