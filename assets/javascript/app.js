@@ -1,5 +1,13 @@
-var correctAnswers, incorrectAnswers, unanswered, timer;
+var correctAnswers, 
+    incorrectAnswers, 
+    unanswered, 
+    timerCounter,
+    selectedAnswer, 
+    notClicked,
+    timerInterval;
+
 var questionCount = 0;
+
 var qaList = [
     [
         "What is my favorite color?",
@@ -23,7 +31,7 @@ var qaList = [
         "a joey", 
         "a calf", 
         "a steve", 
-        1
+        2
     ],
     [
         "How many strings are on a standard guitar?", 
@@ -33,39 +41,95 @@ var qaList = [
         "6", 
         4
     ]
+    // ],
+    // [
+
+    // ],
+    // [
+
+    // ],
+    // [
+
+    // ],
+    // [
+
+    // ],
+    // [
+
+    // ]
 ];
 
+$(".start-button").click(function(){
+    newGame();
+});
+
 $(".card-link").click(function () {
-    nextQuestion();
+    if(questionCount >= qaList.length - 1){
+        gameOver();
+    }
+    else{
+        nextQuestion();
+    }
+});
+
+$(".question .list-group-item").click(function(){
+    selectedAnswer = $(this).index() + 1;
+    $(".list-group-item").removeClass("active-answer");
+    $(this).addClass("active-answer");
 });
 
 function newGame() {
     questionCount = 0;
+    correctAnswers = 0;
+    incorrectAnswers = 0;
+    unanswered = 0;
     $(".start-button").addClass("d-none");
-    $(".container-fluid").removeClass("d-none");
+    newQuestion();
+    $(".row:nth-of-type(2)").removeClass("d-none");
+}
+
+function timer() {
+    timerCounter--;
+    $(".timer").text(timerCounter + " seconds left");
+    if(timerCounter <= 0){
+        nextQuestion();
+    }
 }
 
 function newQuestion() {
+    clearInterval(timerInterval);
     var currentQuestion = qaList[questionCount];
     $(".question .card-title").text(currentQuestion[0]);
     $(".answers .list-group-item:nth-of-type(1)").text(currentQuestion[1]);
     $(".answers .list-group-item:nth-of-type(2)").text(currentQuestion[2]);
     $(".answers .list-group-item:nth-of-type(3)").text(currentQuestion[3]);
     $(".answers .list-group-item:nth-of-type(4)").text(currentQuestion[4]);
-    timer = 30;
+    $(".list-group-item").removeClass("active-answer");
+    timerCounter = 30;
     TweenMax.staggerFrom(".answers .list-group-item", 0.6, {
         x: 300
     }, 0.1);
-    setInterval(timer, 1000);
-}
-
-function timer() {
-    timer--;
-    $(".timer").text(timer + " seconds left")
+    timerInterval = setInterval(timer, 1000);
 }
 
 function nextQuestion() {
+    var currentQuestion = qaList[questionCount];
+    // This boolean ensures the player can't keep clicking to get more points, 
+    // it also checks to see if the current answer is correct.
+    if(selectedAnswer === currentQuestion[5]){
+        correctAnswers++;
+        notClicked = false;
+    }
+    if(selectedAnswer !== currentQuestion[5]){
+        incorrectAnswers++;
+        notClicked = false;
+    }
     questionCount++;
-    timer;
     newQuestion();
+}
+
+function gameOver(){
+    $("#correct-answers").text("You got " + correctAnswers + " correct");
+    $(".row:nth-of-type(2)").addClass("d-none");
+    $(".game-over").removeClass("d-none");
 }

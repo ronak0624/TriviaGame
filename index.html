@@ -10,16 +10,19 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.typekit.net/xbg7zzr.css">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
-    <button class="start-button">New Game!</button>
-    <div class="container-fluid p-5">
-        <h1>Trivia Game!</h1>
+    <button class="start-button btn btn-primary">New Game!</button>
+    <div class="container p-5">
         <div class="row">
+            <h1 class="mx-auto">Trivia Game!</h1>
+        </div>
+        <div class="row py-5 d-none">
             <div class="col">
-                <div class="card question" style="width: 18rem;">
+                <div class="card-fluid question" style="width: 18rem;">
                     <!-- <img src="" class="card-img-top" alt="..."> -->
                     <div class="card-body">
                         <h5 class="card-title"></h5>
@@ -38,6 +41,11 @@
             <div class="col">
                 <h3 class="timer"></h3>
             </div>
+        </div>
+        <div class="row game-over d-none">
+            <h3 id="correct-answers"></h3>
+            <h3 id="wrong-answers"></h3>
+            <h3 id="time-out"></h3>
         </div>
     </div>
     <!-- Optional JavaScript -->

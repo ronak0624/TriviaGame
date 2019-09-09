@@ -3,5 +3,29 @@ body{
 }
 
 .card.question{
-    margin: 0 auto;
+   
+}
+.question .list-group-item:hover{
+    cursor: pointer;
+    color: white;
+    background-color: #212121;
+    transition: 0.2s;
+}
+.start-button{
+    position: absolute;
+    margin-left: 50vw;
+    margin-top: 50vh;
+    transform: translate(-50%, -50%);
+    background-color: none;
+}
+.timer{
+    position: absolute;
+    margin-left: 50%;
+    margin-top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 36px;
+}
+.active-answer{
+    color: white;
+    background-color: #212121;
 }
